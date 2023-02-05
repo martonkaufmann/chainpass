@@ -1,0 +1,6 @@
+.env
+wallets.json
+
+/build
+/node_modules
+/.openzeppelin
