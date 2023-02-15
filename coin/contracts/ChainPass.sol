@@ -9,7 +9,7 @@ contract ChainPass is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     event AddCredential(address indexed from, string credential);
     event AddNote(address indexed from, string note);
 
-    uint16 private constant _developerTax = 2;
+    uint16 private constant _developerTax = 4;
     address private constant _developerWallet = 0x6d6247501b822FD4Eaa76FCB64bAEa360279497f;
 
     uint16 private constant _marketingTax = 1;
@@ -19,7 +19,7 @@ contract ChainPass is Initializable, ERC20Upgradeable, OwnableUpgradeable {
     constructor() {
         _disableInitializers();
     }
-
+ 
     function initialize() initializer public {
         __ERC20_init("ChainPass", "CPT");
         __Ownable_init();
