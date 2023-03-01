@@ -7,18 +7,19 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "truffle migrate",
-    "deploy": "truffle deploy",
-    "migrate-test": "truffle migrate --network=testnet",
-    "deploy-test": "truffle deploy --network=testnet"
+    "dashboard": "truffle dashboard",
+    "develop": "truffle develop",
+    "verify": "truffle run verify ChainPass --network=dashboard",
+    "deploy": "truffle deploy --network=dashboard",
+    "migrate": "truffle migrate --network=dashboard"
   },
-  "license": "MIT",
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.1",
     "@openzeppelin/contracts-upgradeable": "^4.8.1",
     "@openzeppelin/truffle-upgrades": "^1.17.0",
     "@truffle/hdwallet-provider": "^2.1.5",
     "dotenv": "^16.0.3",
-    "truffle": "^5.7.4"
+    "truffle": "^5.7.4",
+    "truffle-plugin-verify": "^0.6.1"
   }
 }
