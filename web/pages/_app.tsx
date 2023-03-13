@@ -3,10 +3,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Roboto } from "@next/font/google";
 import { AppProps } from "next/app";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-// import { WagmiConfig, createClient, configureChains, mainnet } from 'wagmi'
-// import { bsc, bscTestnet } from "wagmi/chains";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { bsc } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { InjectedConnector } from "wagmi/connectors/injected";
 
 const roboto = Roboto({
     weight: "400",
@@ -14,18 +13,11 @@ const roboto = Roboto({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-    // const { chains, provider, webSocketProvider } = configureChains([bsc], [publicProvider()]);
-
-    // https://rpc.ankr.com/bsc_testnet_chapel
-    // const network = bscTestnet
-    // network.rpcUrls.default = 'https://rpc.ankr.com/bsc_testnet_chapel'
-
-    // TODO: Set network based on env
-    const { chains, provider, webSocketProvider } = configureChains([bscTestnet], [publicProvider()]);
+    const { chains, provider, webSocketProvider } = configureChains(process.env.NODE_ENV === "development" ? [bscTestnet] : [bsc], [publicProvider()]);
 
     const client = createClient({
         autoConnect: true,
-        connectors: [new MetaMaskConnector({ chains })],
+        connectors: [new InjectedConnector({ chains })],
         provider,
         webSocketProvider,
     });

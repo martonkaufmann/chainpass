@@ -43,6 +43,7 @@ contract ChainPass is Initializable, ERC20Upgradeable, OwnableUpgradeable, UUPSU
         address to_,
         uint256 amount_
     ) internal override {
+        // TODO: Check if vulnerable to reentrancy attack
         uint256 fromBalance = balanceOf(from_);
         uint256 developerTaxAmount = amount_ / 100 * developerTax;
         uint256 marketingTaxAmount = amount_ / 100 * marketingTax;
@@ -72,36 +73,8 @@ contract ChainPass is Initializable, ERC20Upgradeable, OwnableUpgradeable, UUPSU
         return credentialBlocks[from_];
     }
 
-    function getLastCredentialBlock(address from_) public view returns (uint) {
-        uint[] memory blocks = credentialBlocks[from_];
-
-        return blocks[blocks.length - 1];
-    }
-
     modifier hasSufficientUsageFee() {
         require(msg.value == usageFee, "Insuficcient usage fee sent");
         _;
     }
-    // function generateTestData() public {
-    //     address[8] memory addresses = [
-    //         0x7788175605244F71813E8ba255D3DaBb442F9159,
-    //         0x1284214b9b9c85549aB3D2b972df0dEEf66aC2c9,
-    //         0x6d6247501b822FD4Eaa76FCB64bAEa360279497f,
-    //         0xE626ceB3C6CC0Bf27F6f903Ff34030d89156dcB9,
-    //         0x2a12A7C1FbcBb89922205FDF28014a365cc2F418,
-    //         0xC5D15eF572d27f4f3087e17Ee9099B760b1151c2,
-    //         0x5CF43Cc6832Dd9bF6CDbB376aD3214e60816e4FB,
-    //         0x7BFd7b2183Ec8500B65f749caa8df58a423637E8
-    //     ];
-
-    //     for(uint i = 0; i < addresses.length; i++) {
-    //         address addr = addresses[i];
-
-    //         for (uint j = 0; j < 10; j++) {
-    //             credentialBlocks[addr].push(block.number + j);
-
-    //             emit AddCredential(addr, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-    //         }
-    //     }
-    // }
 }

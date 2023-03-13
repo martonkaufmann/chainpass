@@ -8,9 +8,10 @@
         "start": "next start",
         "lint": "next lint",
         "wagmi-generate": "wagmi generate",
-        "format": "prettier --trailing-comma all --print-width 160 --tab-width 4 --write ."
+        "format": "rome format ./ --write"
     },
     "dependencies": {
+        "@chakra-ui/icons": "^2.0.17",
         "@chakra-ui/react": "^2.4.9",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
@@ -18,20 +19,24 @@
         "@types/node": "18.13.0",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.10",
+        "cheerio": "^1.0.0-rc.12",
+        "dexie": "^4.0.0-alpha.4",
         "ethers": "^5.7.2",
         "formik": "^2.2.9",
         "framer-motion": "^9.0.2",
+        "fuse.js": "^6.6.2",
         "next": "13.1.6",
         "openpgp": "^5.5.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "react-icons": "^4.8.0",
         "react-use": "^17.4.0",
         "typescript": "4.9.5",
-        "wagmi": "^0.11.5"
+        "wagmi": "^0.11.5",
+        "zustand": "^4.3.6"
     },
     "devDependencies": {
         "@wagmi/cli": "^0.1.6",
-        "prettier": "^2.8.4",
-        "prettier-plugin-organize-imports": "^3.2.2"
+        "rome": "^11.0.0"
     }
 }
